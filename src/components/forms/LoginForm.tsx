@@ -50,11 +50,11 @@ const LoginForm = () => {
           </button>
         </form>
         <div className={styles.line}></div>
-        <form onSubmit={handleGithub} className={styles.form}>
+        {/* <form onSubmit={handleGithub} className={styles.form}>
           <button type="submit" className={styles.button}>
             <GithubIcon /> Login with Github
           </button>
-        </form>
+        </form> */}
         <p>
           {"Don't have an account? "}
           <Link href="/register" className={styles.link}>

@@ -1,0 +1,64 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper{
+    width: 500px;
+    background-color: var(--bgSoft);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    border-radius: 5px;
+}
+
+.form{
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+}
+
+.form input{
+    padding: 20px;
+    background-color: var(--bg);
+    color: var(--textColor);
+    border: none;
+    border-radius: 5px;
+}
+
+.form button{
+    padding: 20px;
+    cursor: pointer;
+    background-color: var(--btn);
+    color: var(--textColor);
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}
+
+.link {
+    color: #5591ff;
+    /* Or any other color you prefer */
+    text-decoration: none;
+    margin-top: -10px;
+    /* Adjust as needed for spacing */
+    margin-bottom: -10px;
+}
+
+/* You may also want to add styles for when the link is hovered over */
+.link:hover {
+    text-decoration: underline;
+}
+
+/* If you want to style the paragraph containing the sign-up link */
+.wrapper p {
+    color: var(--textColor);
+    /* Adjust as needed for spacing */
+    margin-top: -10px;
+    /* Adjust as needed for spacing */
+    margin-bottom: -10px;
+}

@@ -1,31 +1,46 @@
+import UserBox from "@/components/userBox/UserBox";
 import styles from "./singlePost.module.css"
 import Image from "next/image";
+import { Suspense } from "react";
+import { getPost } from "../../../lib/data";
 
-const SinglePostPage = () => {
+export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
+  const post = await getPost(params.slug)
+
+  return {
+    title: post.title,
+    description: post.desc
+  };
+}
+
+const SinglePostPage = async ({ params }: { params: { slug: string } }) => {
+  const post = await getPost(params.slug);
+
+  if (!post) {
+    return <div className={styles.container}>Post not found</div>
+  }
+
   return (
     <div className={styles.container}>
-      <div className={styles.imgContainer}>
-        <Image src="/post.png" alt="" fill className={styles.img} />
-      </div>
+      {post.img && <div className={styles.imgContainer}>
+        <Image src={post.img} alt="" fill className={styles.img} />
+      </div>}
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>Title</h1>
+        <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.detailContainer}>
-          <Image src="/noavatar.png" alt="" width={50} height={50} className={styles.avatar} />
-          <div className={styles.detailText}>
-            <span className={styles.detailTitle}>Author</span>
-            <span className={styles.detailValue}>Gus Aramayo</span>
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <UserBox id={post.userId} />
+          </Suspense>
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
-            <span className={styles.detailValue}>01.01.2024</span>
+            <span className={styles.detailValue}>{post.createdAt.toString().slice(4, 16)}</span>
           </div>
         </div>
-        <div className={styles.content}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, explicabo. Fugiat voluptatibus iure sapiente sit, ipsa beatae at quis earum eveniet, provident modi enim consectetur ea exercitationem. Animi, suscipit nihil!
-        </div>
+        <div className={styles.content}>{post.desc}</div>
       </div>
     </div>
   );
 };
+
 
 export default SinglePostPage;

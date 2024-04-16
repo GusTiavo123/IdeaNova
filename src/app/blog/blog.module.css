@@ -8,6 +8,23 @@
     width: 30%;
 }
 
+.buttonContainer {
+    display: flex;
+}
+
+.postButton {
+    width: 130px;
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.postButton:hover {
+    background-color: var(--text);
+    color: var(--bg);
+}
+
 @media screen and (max-width: 1280px) {
     .post {
         width: 45%;

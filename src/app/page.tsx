@@ -1,14 +1,18 @@
 import Image from "next/image";
 import styles from "./home.module.css";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 const Home = () => {
+  
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>Creative Agency</h1>
+        <h1 className={styles.title}>Creative Thought Agency</h1>
         <p className={styles.desc}>
-          We specialize in innovative strategies and
-          creative solutions to elevate brands and captivate audiences.
+          We specialize in innovative strategies and creative solutions to
+          elevate brands and captivate audiences.
         </p>
         <div className={styles.buttons}>
           <button className={styles.button}>Learn More</button>
@@ -19,7 +23,13 @@ const Home = () => {
         </div>
       </div>
       <div className={styles.imgContainer}>
-        <Image src="/hero.gif" alt="" fill unoptimized className={styles.heroImg} />
+        <Image
+          src="/hero.gif"
+          alt=""
+          fill
+          unoptimized
+          className={styles.heroImg}
+        />
       </div>
     </div>
   );

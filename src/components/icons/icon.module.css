@@ -1,0 +1,8 @@
+.icon {
+  flex-shrink: 0;
+  /* Prevents the icon from shrinking */
+  width: 24px;
+  /* Sets the width of the icon */
+  height: 24px;
+  /* Sets the height of the icon, should be the same as width to maintain aspect ratio */
+}

@@ -1,0 +1,98 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 500px;
+    background-color: var(--bgSoft);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    border-radius: 5px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+}
+
+.form input {
+    padding: 20px;
+    background-color: var(--bg);
+    color: var(--textColor);
+    border: none;
+    border-radius: 5px;
+}
+
+.form button {
+    padding: 20px;
+    cursor: pointer;
+    background-color: var(--btn);
+    color: var(--textColor);
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.line {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    background-color: white;
+}
+
+.line::before {
+    content: 'Or';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bgSoft);
+    color: #8b8b8b;
+    padding: 0 15px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    /* This centers the items vertically */
+    justify-content: center;
+    /* This centers the items horizontally */
+    gap: 10px;
+    /* Adjust as necessary to add space between icon and text */
+}
+
+.button-text {
+    line-height: 1;
+    /* This resets the line-height and may help to better align the text vertically */
+}
+
+.link {
+    color: #5591ff;
+    /* Or any other color you prefer */
+    text-decoration: none;
+    margin-top: -10px;
+    /* Adjust as needed for spacing */
+    margin-bottom: -10px;
+}
+
+/* You may also want to add styles for when the link is hovered over */
+.link:hover {
+    text-decoration: underline;
+}
+
+/* If you want to style the paragraph containing the sign-up link */
+.wrapper p {
+    color: var(--textColor);
+    /* Adjust as needed for spacing */
+    margin-top: -10px;
+    /* Adjust as needed for spacing */
+    margin-bottom: -10px;
+}

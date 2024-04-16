@@ -36,6 +36,13 @@
   margin-bottom: 20px;
   font-weight: 300;
   color: gray;
+  display: -webkit-box;  /* Required for line clamping */
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;  
+  overflow: hidden;    
+  text-overflow: ellipsis; 
+  line-height: 1.4em;  
+  max-height: 5.6em;   
 }
 
 .link{

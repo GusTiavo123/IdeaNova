@@ -1,6 +1,12 @@
 import Image from "next/image";
 import styles from "./about.module.css"
 import Box from "@/components/box/Box";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "IdeaNova about page",
+  description: "IdeaNova about info",
+};
 
 const AboutPage = () => {
   return (

@@ -46,9 +46,7 @@ const Links: React.FC<LinksProps> = ({ session }) => {
         ))}
         {session?.user ? (
           <>
-            {session.user.isAdmin && (
-              <NavLink item={{ title: "Admin", path: "/admin" }} key="Admin" />
-            )}
+
             <button className={styles.logout} onClick={handleLogOut}>
               Log out
             </button>

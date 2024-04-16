@@ -5,7 +5,6 @@ import { connectToDb } from "./utils";
 import { User } from "./models";
 import bcrypt from "bcrypt";
 
-
 export const authOptions = {
   providers: [
     Github({
@@ -13,27 +12,41 @@ export const authOptions = {
       clientSecret: process.env.GITHUB_SECRET_ID as string,
     }),
     CredentialsProvider({
+      credentials: {
+        username: {
+          label: "Username",
+          type: "text",
+          placeholder: "Enter your username",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "Enter your password",
+        },
+      },
       async authorize(credentials) {
         try {
-          connectToDb();
-          const user = await User.findOne({ username: credentials?.username });
+          await connectToDb();
+          if (!credentials || !credentials.username || !credentials.password)
+            throw new Error("Credentials not provided");
 
-          if (!user) {
-            throw new Error("User not found");
-          }
+          const user = await User.findOne({ username: credentials.username });
+          if (!user) throw new Error("User not found");
 
-          if (credentials?.password) {
-            const isPasswordCorrect = await bcrypt.compare(
-              credentials.password,
-              user.password
-            );
-            if (!isPasswordCorrect) {
-              throw new Error("Incorrect password");
-            }
-            return { username: user.username, email: user.email };
-          }
+          const isPasswordCorrect = await bcrypt.compare(
+            credentials.password,
+            user.password
+          );
+          if (!isPasswordCorrect) throw new Error("Incorrect password");
+
+          return {
+            id: user._id.toString(),
+            name: user.name,
+            email: user.email,
+          }; // Ensure this object includes all required user properties
         } catch (error) {
-          throw new Error(error.message);
+          console.error("Authorization error:", error);
+          return null;
         }
       },
     }),
@@ -41,7 +54,7 @@ export const authOptions = {
   callbacks: {
     async signIn({ account, user }) {
       if (account?.provider === "github") {
-        console.log(user)
+        console.log(user);
         try {
           connectToDb();
           const userSearch = await User.findOne({ email: user?.email });

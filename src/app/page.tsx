@@ -1,11 +1,8 @@
 import Image from "next/image";
 import styles from "./home.module.css";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { revalidatePath } from "next/cache";
+import Link from "next/link";
 
 const Home = () => {
-  
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
@@ -15,21 +12,19 @@ const Home = () => {
           elevate brands and captivate audiences.
         </p>
         <div className={styles.buttons}>
-          <button className={styles.button}>Learn More</button>
-          <button className={styles.button}>Contact</button>
+          <button className={styles.button}>
+            <Link href={"/about"}>Learn More</Link>
+          </button>
+          <button className={styles.button}>
+            <Link href={"/contact"}>Contact</Link>
+          </button>
         </div>
         <div className={styles.brands}>
           <Image src="/brands.png" alt="" fill className={styles.brandImg} />
         </div>
       </div>
       <div className={styles.imgContainer}>
-        <Image
-          src="/hero.gif"
-          alt=""
-          fill
-          unoptimized
-          className={styles.heroImg}
-        />
+        <Image src="/hero.gif" alt="" fill className={styles.heroImg} />
       </div>
     </div>
   );

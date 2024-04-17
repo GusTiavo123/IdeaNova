@@ -1,12 +1,11 @@
 "use client";
 
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import styles from "./links.module.css";
 import NavLink from "./navLink/navLink";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { Session } from "next-auth";
-import toast from "react-hot-toast";
 
 interface LinksProps {
   session: Session | null;
@@ -46,7 +45,6 @@ const Links: React.FC<LinksProps> = ({ session }) => {
         ))}
         {session?.user ? (
           <>
-
             <button className={styles.logout} onClick={handleLogOut}>
               Log out
             </button>
@@ -64,10 +62,21 @@ const Links: React.FC<LinksProps> = ({ session }) => {
         onClick={() => setOpen((prev) => !prev)}
       />
       {open && (
-        <div className={styles.mobileLinks}>
+        <div className={styles.containerLinks}>
+          <div className={styles.mobileLinks}>
           {links.map((link) => (
             <NavLink item={link} key={link.title} />
           ))}
+          {session?.user ? (
+            <>
+              <button className={styles.logout} onClick={handleLogOut}>
+                Log out
+              </button>
+            </>
+          ) : (
+            <NavLink item={{ title: "Login", path: "/login" }} key="Login" />
+          )}
+        </div>
         </div>
       )}
     </div>
